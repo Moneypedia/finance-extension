@@ -23,7 +23,7 @@ Decorate with Tailwind CSS or Bulma, BUT DON'T USE NPM!!!
 
 ## References
 
-### Useful Extensions with OK UI
+### Select to Look up Vocabulary
 * [Flashcard dictionary](https://github.com/chuaweijie/Flashcard-Dictionary)
 	* **Highlight to search** -> Let's use this
 	* Vocabulary Listing
@@ -36,6 +36,10 @@ Decorate with Tailwind CSS or Bulma, BUT DON'T USE NPM!!!
 * [Translate on hover](https://github.com/artemave/translate_onhover)
 	* 평범한 UI이다. 
 	* 다만 hovering이 딱히 직관적이지는 않음. 
+
+* [Coding Train Tutorial](https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_084_Word_Definition_Extension/JavaScript)
+
+
 
 ### Additional Features
 * **[Highlighting specific letter](https://github.com/ds300/jetzt)**

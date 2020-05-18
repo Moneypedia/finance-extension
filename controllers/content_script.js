@@ -18,3 +18,9 @@ function selectWord() {
     chrome.runtime.sendMessage(message);
   }
 }
+
+function getDefinition(word) {
+  //   request url for definition
+  var url = `MY_API_URL + ${word}`;
+  url = url.replace(/\s+/g, "");
+}
