@@ -21,6 +21,6 @@ function selectWord() {
 
 function getDefinition(word) {
   //   request url for definition
-  var url = `MY_API_URL + ${word}`;
+  var url = `http://127.0.0.1:8000/ + ${word}`;
   url = url.replace(/\s+/g, "");
 }
