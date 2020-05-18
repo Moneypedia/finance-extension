@@ -1,7 +1,18 @@
 # Financial Extension
 
+## Chrome Extension Structure
 * manifest.json
-* 
+* controllers
+  * background.js
+  * content_script.js
+* views
+  * index.html
+
+### Pop up page utilization
+Decorate with Tailwind CSS or Bulma, BUT DON'T USE NPM!!!
+* Tailwind: https://tailwindcss.com/docs/installation/
+* Bulma: https://bulma.io/documentation/overview/start/
+
 
 ## References
 
