@@ -10,9 +10,16 @@
 
 ### Pop up page utilization
 Decorate with Tailwind CSS or Bulma, BUT DON'T USE NPM!!!
-* Tailwind: https://tailwindcss.com/docs/installation/
 * Bulma: https://bulma.io/documentation/overview/start/
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+```
 
+* Tailwind: https://tailwindcss.com/docs/installation/
+```html
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+```
 
 ## References
 
