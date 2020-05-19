@@ -1,3 +1,6 @@
+const popupContainer = document.querySelector(".js-popup"),
+  popupTitle = popupContainer.querySelector("h1");
+
 document.addEventListener(
   "DOMContentLoaded",
   function () {
@@ -5,17 +8,32 @@ document.addEventListener(
 
     function onclick() {
       chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, "hi", setCount);
+        chrome.tabs.sendMessage(tabs[0].id, "hi", getDefinition);
       });
     }
 
     function setCount(res) {
       let backgroundPage = chrome.extension.getBackgroundPage();
-      let word = backgroundPage.word.trim();
+      let word = backgroundPage.word;
       console.log(word);
       const div = document.createElement("div");
       div.textContent = `${word}`;
       document.body.appendChild(div);
+    }
+
+    function getDefinition(res) {
+      let backgroundPage = chrome.extension.getBackgroundPage();
+      let word = backgroundPage.word;
+      //   request url for definition
+      var url = `http://127.0.0.1:8000/lookup/${word}`;
+      console.log(url);
+      loadJSON(url, gotData);
+      function gotData(data) {
+        console.log(data);
+        const div = document.createElement("div");
+        div.textContent = `${data}`;
+        document.body.appendChild(div);
+      }
     }
   },
   false
