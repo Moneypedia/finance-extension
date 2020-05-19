@@ -25,10 +25,17 @@ function textSelection() {
   }
 
   //Only trigger text look up if there are words selected
-  if (selectedText != "" && selectedText != "" && bubbleDiv == null) {
+  if (selectedText != "") {
     var info = getSelectionInfo();
+    // bubbleDiv is small popup screen when selected
     bubbleDiv = createDiv(info, selectedText);
     wordLookup(selectedText);
+  } else {
+    //Code to dimiss the pop up bubble
+    document.querySelectorAll(".dictionaryDiv").forEach(function (Node) {
+      Node.remove();
+    });
+    bubbleDiv = null;
   }
 }
 
