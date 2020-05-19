@@ -34,7 +34,8 @@ function textSelection() {
 
 //The function that handles the lookup of the vocabulary.
 function wordLookup(vocab) {
-  //The base link. This should change when I programme the system to handle multiple dictionaries.
+  // link to fetch definition from the dictionary
+  // var link = `http://127.0.0.1:8000/lookup/${vocab}`;
   var link = "https://api.dictionaryapi.dev/api/v1/entries/en/" + vocab;
 
   //The request to handle the call to
