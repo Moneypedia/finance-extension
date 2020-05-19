@@ -2,7 +2,7 @@
 var debug = false;
 var bubbleDiv = null;
 
-//This funciton will be called when users select the text. It will handle false alarms when users just simply click and selects nothing.
+// FUNCTION THAT SELECTS VOCABULARY TO SHOW BUBBLE WINDOW
 function textSelection() {
   //Get the html element that is in focus.
   var focused = document.activeElement;
@@ -39,7 +39,7 @@ function textSelection() {
   }
 }
 
-//The function that handles the lookup of the vocabulary.
+// FUNCTION THAT LOOKS UP DEFINITION FROM API
 function wordLookup(vocab) {
   // link to fetch definition from the dictionary
   // var link = `http://127.0.0.1:8000/lookup/${vocab}`;
@@ -57,6 +57,7 @@ function wordLookup(vocab) {
   xhttp.send();
 }
 
+// FUNCTION THAT PARSES SEARCH RESULT
 function appendToDiv(content) {
   var wordDefObj = JSON.parse(content);
   var hostDiv = bubbleDiv.heading.getRootNode().host;
@@ -111,7 +112,7 @@ function appendToDiv(content) {
   }
 }
 
-//Function to get the exact position of the word(s) highlighted
+// FUNCTION THAT GETS POSITION OF THE HIGHLIGHTED WORD
 function getSelectionInfo() {
   var boundingRect;
 
@@ -142,13 +143,14 @@ function getSelectionInfo() {
   return toReturn;
 }
 
-//Get the coordinates of the selection
+// FUNCTION THAT GETS COORDINATES OF THE SELECTION
 function getSelectionCoords(selection) {
   var oRange = selection.getRangeAt(0); //get the text range
   var oRect = oRange.getBoundingClientRect();
   return oRect;
 }
 
+// FUNCTION THAT CREATES THE BUBBLE WINDOW
 function createDiv(info, selectedText) {
   // Create the div to hold the "bubble pop up."
   var hostDiv = document.createElement("div");

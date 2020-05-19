@@ -5,6 +5,11 @@
 * controllers
   * background.js
   * content_script.js
+    * textSelection(): main function that gets triggered on click events
+    * wordLookup(*vocab*): looks up definitions from the API
+    * appendToDiv(*content*): parses the search result
+    * getSelectionInfo(): gets position of the highlighted word 
+    * createDiv(*info*, *selectedText*): make bubble window
 * views
   * index.html
 
