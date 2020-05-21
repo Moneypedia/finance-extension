@@ -280,7 +280,54 @@ function createDiv(info, selectedText) {
   };
 }
 
-//The event that will trigger the textSelection function which will process the selected vocabularies.
+// REPLACE TEXT WITH REGEX RULE
+function replaceText(textNode) {
+  var v = textNode.nodeValue;
+
+  v = v.replace(/\bEBITDA\b/g, "profit");
+  v = v.replace(/\bebitda\b/g, "profit");
+  v = v.replace(/\bEBIT\b/g, "profit");
+  v = v.replace(/\bebit\b/g, "profit");
+
+  textNode.nodeValue = v;
+}
+
+// DETECTS SPECIFIC WORD IN THE BODY TEXT
+// Source: http://is.gd/mwZp7E
+function wordDetector(node) {
+  var child, next;
+
+  var tagName = node.tagName ? node.tagName.toLowerCase() : "";
+
+  // state exceptions for unwanted body elements
+  if (tagName == "input" || tagName == "textarea") {
+    return;
+  }
+  if (node.classList && node.classList.contains("ace_editor")) {
+    return;
+  }
+
+  switch (node.nodeType) {
+    case 1: // Element
+    case 9: // Document
+    case 11: // Document fragment
+      child = node.firstChild;
+      while (child) {
+        next = child.nextSibling;
+        wordDetector(child);
+        child = next;
+      }
+      break;
+
+    case 3: // Text node
+      replaceText(node);
+      break;
+  }
+}
+
+// The event that will trigger the textSelection function which will process the selected vocabularies.
 document.onclick = function () {
   textSelection();
 };
+
+wordDetector(document.body);
