@@ -1,6 +1,7 @@
 //Variable used to turn on debug mode
 var debug = false;
 var bubbleDiv = null;
+const bubbleWidth = 300;
 
 // FUNCTION THAT SELECTS VOCABULARY TO SHOW BUBBLE WINDOW
 function textSelection() {
@@ -137,7 +138,7 @@ function getSelectionInfo() {
   // var top = boundingRect.top + window.scrollY;
   var top = event.clientY + window.pageYOffset;
   var bottom = top + boundingRect.height;
-  var left = window.pageXOffset + window.innerWidth - 300;
+  var left = window.pageXOffset + window.innerWidth - bubbleWidth;
 
   if (boundingRect.height == 0) {
     top = event.pageY;
@@ -170,9 +171,8 @@ function createDiv(info, selectedText) {
   var shadow = hostDiv.shadowRoot;
   var style = document.createElement("style");
 
-  //It is the same style context. Separating line for ease of reading and editing
-  style.textContent =
-    ".mwe-popups{background:#fff;position:absolute;z-index:110;-webkit-box-shadow:0 30px 90px -20px rgba(0,0,0,0.3),0 0 1px #a2a9b1;box-shadow:0 30px 90px -20px rgba(0,0,0,0.3),0 0 1px #a2a9b1;padding:0;font-size:14px;min-width:300px;border-radius:2px}";
+  //styling bubble window
+  style.textContent = `.mwe-popups{background:#fff;position:absolute;z-index:110;-webkit-box-shadow:0 30px 90px -20px rgba(0,0,0,0.3),0 0 1px #a2a9b1;box-shadow:0 30px 90px -20px rgba(0,0,0,0.3),0 0 1px #a2a9b1;padding:0;font-size:14px;min-width:${bubbleWidth}px;border-radius:2px}`;
   style.textContent =
     style.textContent + ".mwe-popups .mwe-popups-is-not-tall{width:320px}";
   style.textContent =
