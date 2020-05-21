@@ -325,9 +325,10 @@ function wordDetector(node) {
   }
 }
 
-// The event that will trigger the textSelection function which will process the selected vocabularies.
+// RUN VOCABULARY LOOKUP FOR SELECTED WORD
 document.onclick = function () {
   textSelection();
 };
 
+// RUN WORD DETECTOR && RUN REPLACER
 wordDetector(document.body);
