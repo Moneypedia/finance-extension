@@ -137,7 +137,7 @@ function getSelectionInfo() {
   // var top = boundingRect.top + window.scrollY;
   var top = event.clientY + window.pageYOffset;
   var bottom = top + boundingRect.height;
-  var left = window.pageXOffset;
+  var left = window.pageXOffset + window.innerWidth - 300;
 
   if (boundingRect.height == 0) {
     top = event.pageY;
