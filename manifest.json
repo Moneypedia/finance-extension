@@ -1,6 +1,6 @@
 {
   "name": "Financial Extension",
-  "version": "0.1",
+  "version": "0.0.1",
   "manifest_version": 2,
   "description": "Extends user's financial vocabulary knowledge",
   "content_scripts": [

@@ -112,19 +112,32 @@ function appendToDiv(content) {
   }
 }
 
+// FUNCTION THAT GETS COORDINATES OF THE SELECTED RECTANGLE TEXT BOX
+// REFER TO FOLLOWING DOCUMENT: https://javascript.info/coordinates#element-coordinates-getboundingclientrect
+function getSelectionCoords(selection) {
+  var oRange = selection.getRangeAt(0); //get the selected text box's range
+  var oRect = oRange.getBoundingClientRect();
+  // console.log(oRect);
+  return oRect;
+}
+
 // FUNCTION THAT GETS POSITION OF THE HIGHLIGHTED WORD
 function getSelectionInfo() {
   var boundingRect;
 
+  // refer to the following document: https://javascript.info/coordinates
   if (window.getSelection().toString().length > 1) {
     boundingRect = getSelectionCoords(window.getSelection());
   } else {
     return null;
   }
 
-  var top = boundingRect.top + window.scrollY;
-  var bottom = boundingRect.bottom + window.scrollY;
-  var left = boundingRect.left + window.scrollX;
+  // positioning bubble page based on text box coordinates information
+  console.log(boundingRect);
+  // var top = boundingRect.top + window.scrollY;
+  var top = event.clientY + window.pageYOffset;
+  var bottom = top + boundingRect.height;
+  var left = window.pageXOffset;
 
   if (boundingRect.height == 0) {
     top = event.pageY;
@@ -133,29 +146,23 @@ function getSelectionInfo() {
   }
 
   var toReturn = {
-    top: top,
-    bottom: bottom,
-    left: left,
+    top,
+    bottom,
+    left,
     clientY: event.clientY,
     height: boundingRect.height,
   };
 
+  console.log(toReturn);
   return toReturn;
 }
 
-// FUNCTION THAT GETS COORDINATES OF THE SELECTION
-function getSelectionCoords(selection) {
-  var oRange = selection.getRangeAt(0); //get the text range
-  var oRect = oRange.getBoundingClientRect();
-  return oRect;
-}
-
-// FUNCTION THAT CREATES THE BUBBLE WINDOW
+// FUNCTION THAT CREATES THE BUBBLE WINDOW BASED ON COORINATES INFORMATION AND SELECTED TEXT
 function createDiv(info, selectedText) {
-  // Create the div to hold the "bubble pop up."
+  // Insert the div in html for "bubble pop up."
   var hostDiv = document.createElement("div");
   hostDiv.className = "dictionaryDiv";
-  hostDiv.style.left = info.left - 10 + "px";
+  hostDiv.style.left = info.left + "px";
   hostDiv.style.position = "absolute";
   hostDiv.attachShadow({ mode: "open" });
 
