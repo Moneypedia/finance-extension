@@ -136,13 +136,15 @@ function getSelectionInfo() {
   // positioning bubble page based on text box coordinates information
   console.log(boundingRect);
   // var top = boundingRect.top + window.scrollY;
-  var top = event.clientY + window.pageYOffset;
-  var bottom = top + boundingRect.height;
+  var top = window.pageYOffset;
+  var bottom = window.pageYOffset;
   var left = window.pageXOffset + window.innerWidth - bubbleWidth;
+
+  console.log(top, bottom, left);
 
   if (boundingRect.height == 0) {
     top = event.pageY;
-    bottom = event.pageY;
+    bottom = event.pageY + boundingRect.height;
     left = event.pageX;
   }
 
@@ -261,19 +263,11 @@ function createDiv(info, selectedText) {
   document.body.appendChild(hostDiv);
 
   //Decide where to put the div depending on where is the div
-  if (info.clientY < window.innerHeight / 2) {
-    popupDiv.className =
-      "mwe-popups mwe-popups-no-image-tri mwe-popups-is-not-tall";
-    hostDiv.style.top = info.bottom + 10 + "px";
-    if (info.height == 0) {
-      hostDiv.style.top = parseInt(hostDiv.style.top) + 8 + "px";
-    }
-  } else {
-    popupDiv.className = "mwe-popups flipped_y mwe-popups-is-not-tall";
-    hostDiv.style.top = info.top - 10 - popupDiv.clientHeight + "px";
-    if (info.height == 0) {
-      hostDiv.style.top = parseInt(hostDiv.style.top) - 8 + "px";
-    }
+  popupDiv.className =
+    "mwe-popups mwe-popups-no-image-tri mwe-popups-is-not-tall";
+  hostDiv.style.top = info.bottom + 10 + "px";
+  if (info.height == 0) {
+    hostDiv.style.top = parseInt(hostDiv.style.top) + 8 + "px";
   }
 
   //Return everything above in JSON format
