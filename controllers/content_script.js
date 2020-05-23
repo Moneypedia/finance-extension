@@ -48,9 +48,11 @@ function wordLookup(vocab) {
 
   //The request to handle the call to
   var xhttp = new XMLHttpRequest();
+  // console.log(xhttp);
 
   //What to do after a the definition is loaded
   xhttp.onload = function () {
+    console.log(this.responseText);
     appendToDiv(this.responseText);
   };
 
