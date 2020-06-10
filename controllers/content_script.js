@@ -42,9 +42,11 @@ function textSelection() {
 
 // FUNCTION THAT LOOKS UP DEFINITION FROM API
 function wordLookup(vocab) {
+  var firstLetter = vocab.charAt(0);
   // link to fetch definition from the dictionary
   // var link = `http://127.0.0.1:8000/lookup/${vocab}`;
-  var link = "https://api.dictionaryapi.dev/api/v1/entries/en/" + vocab;
+  // var link = "https://api.dictionaryapi.dev/api/v1/entries/en/" + vocab;
+  var link = `https://www.investopedia.com/terms/${firstLetter}/${vocab}.asp`;
 
   //The request to handle the call to
   var xhttp = new XMLHttpRequest();
@@ -52,12 +54,20 @@ function wordLookup(vocab) {
 
   //What to do after a the definition is loaded
   xhttp.onload = function () {
-    console.log(this.responseText);
+    // console.log(this.responseText);
     appendToDiv(this.responseText);
   };
 
   xhttp.open("GET", link, true);
   xhttp.send();
+
+  // text content related article: https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
+  const article = document.getElementsByClassName(
+    "comp mntl-sc-block-callout-body mntl-text-block"
+  );
+  const conceptSummary = article[0].textContent;
+
+  console.log(conceptSummary);
 }
 
 // FUNCTION THAT PARSES SEARCH RESULT
