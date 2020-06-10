@@ -62,10 +62,10 @@ function wordLookup(vocab) {
   xhttp.send();
 
   // text content related article: https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
-  const article = document.getElementsByClassName(
+  var article = document.getElementsByClassName(
     "comp mntl-sc-block-callout-body mntl-text-block"
   );
-  const conceptSummary = article[0].textContent;
+  var conceptSummary = article[0].textContent;
 
   console.log(conceptSummary);
 }
