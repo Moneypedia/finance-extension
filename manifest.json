@@ -16,5 +16,10 @@
     "default_popup": "popup/popup.html",
     "default_title": "Financial Extension"
   },
-  "permissions": ["storage", "http://127.0.0.1:8000/*"]
+  "permissions": [
+    "storage",
+    "http://127.0.0.1:8000/*",
+    "https://www.investopedia.com/*",
+    "http://ec2-3-34-99-110.ap-northeast-2.compute.amazonaws.com/"
+  ]
 }
