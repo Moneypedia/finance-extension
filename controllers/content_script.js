@@ -42,32 +42,19 @@ function textSelection() {
 
 // FUNCTION THAT LOOKS UP DEFINITION FROM API
 function wordLookup(vocab) {
-  var firstLetter = vocab.charAt(0);
-  // link to fetch definition from the dictionary
-  // var link = `http://127.0.0.1:8000/lookup/${vocab}`;
-  // var link = "https://api.dictionaryapi.dev/api/v1/entries/en/" + vocab;
-  var link = `https://www.investopedia.com/terms/${firstLetter}/${vocab}.asp`;
+  //The base link. This should change when I programme the system to handle multiple dictionaries.
+  var link = "https://finance-extension.an.r.appspot.com/lookup/" + vocab;
 
   //The request to handle the call to
-  var xhttp = new XMLHttpRequest();
-  // console.log(xhttp);
+  var xhr = new XMLHttpRequest();
 
   //What to do after a the definition is loaded
-  xhttp.onload = function () {
-    // console.log(this.responseText);
+  xhr.onload = function () {
     appendToDiv(this.responseText);
   };
 
-  xhttp.open("GET", link, true);
-  xhttp.send();
-
-  // text content related article: https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/
-  var article = document.getElementsByClassName(
-    "comp mntl-sc-block-callout-body mntl-text-block"
-  );
-  var conceptSummary = article[0].textContent;
-
-  console.log(conceptSummary);
+  xhr.open("GET", link, true);
+  xhr.send();
 }
 
 // FUNCTION THAT PARSES SEARCH RESULT
@@ -259,7 +246,7 @@ function createDiv(info, selectedText) {
 
   //Link for users to go for more information
   var moreInfo = document.createElement("a");
-  moreInfo.href = `https://www.google.com/search?hl=en&q=define+${selectedText}`;
+  moreInfo.href = `http://ec2-3-34-99-110.ap-northeast-2.compute.amazonaws.com/${selectedText}`;
   moreInfo.style = "float: right; text-decoration: none;";
   moreInfo.target = "_blank";
 
@@ -292,6 +279,7 @@ function createDiv(info, selectedText) {
   };
 }
 
+/*
 // REPLACE TEXT WITH REGEX RULE
 function replaceText(textNode) {
   var v = textNode.nodeValue;
@@ -336,6 +324,7 @@ function wordDetector(node) {
       break;
   }
 }
+*/
 
 // RUN VOCABULARY LOOKUP FOR SELECTED WORD
 document.onclick = function () {
@@ -343,4 +332,4 @@ document.onclick = function () {
 };
 
 // RUN WORD DETECTOR && RUN REPLACER
-wordDetector(document.body);
+// wordDetector(document.body);
