@@ -25,7 +25,7 @@ document.addEventListener(
       let backgroundPage = chrome.extension.getBackgroundPage();
       let word = backgroundPage.word;
       //   request url for definition
-      var url = `http://127.0.0.1:8000/lookup/${word}`;
+      var url = `https://finance-extension.an.r.appspot.com/lookup/${word}`;
       console.log(url);
       loadJSON(url, gotData);
       function gotData(data) {

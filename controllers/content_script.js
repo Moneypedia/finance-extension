@@ -43,18 +43,37 @@ function textSelection() {
 // FUNCTION THAT LOOKS UP DEFINITION FROM API
 function wordLookup(vocab) {
   //The base link. This should change when I programme the system to handle multiple dictionaries.
-  var link = "https://finance-extension.an.r.appspot.com/lookup/" + vocab;
-
-  //The request to handle the call to
-  var xhr = new XMLHttpRequest();
-
-  //What to do after a the definition is loaded
-  xhr.onload = function () {
-    appendToDiv(this.responseText);
+  searchWord = vocab.toLowerCase();
+  var url = "https://finance-extension.an.r.appspot.com/lookup/" + searchWord;
+  console.log(url);
+  // fetch(url, {
+  //   method: "get",
+  // })
+  //   .then(function (response) {
+  //     console.log(response.json);
+  //   })
+  //   .catch(function (err) {});
+  var getJSON = function (url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.responseType = "json";
+    xhr.onload = function () {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
   };
 
-  xhr.open("GET", link, true);
-  xhr.send();
+  getJSON(url, function (err, data) {
+    if (err !== null) {
+      alert("Something went wrong: " + err);
+    } else {
+    }
+  });
 }
 
 // FUNCTION THAT PARSES SEARCH RESULT
